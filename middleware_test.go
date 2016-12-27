@@ -10,8 +10,8 @@ import (
 	"time"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/urfave/negroni"
 	"github.com/stretchr/testify/assert"
+	"github.com/urfave/negroni"
 )
 
 var (
@@ -125,7 +125,7 @@ func TestMiddleware_ServeHTTP(t *testing.T) {
 	assert.JSONEq(t,
 		fmt.Sprintf(`{"level":"info","method":"GET","msg":"completed handling request",`+
 			`"remote":"10.10.10.10","request":"http://example.com/stuff?rly=ya",`+
-			`"measure#web.latency":10000,"took":10000,"text_status":"I'm a teapot",`+
+			`"measure#web-latency":10000,"took":10000,"text_status":"I'm a teapot",`+
 			`"status":418,"request_id":"22035D08-98EF-413C-BBA0-C4E66A11B28D","time":"%s"}`, nowToday),
 		lines[1])
 }
@@ -147,7 +147,7 @@ func TestMiddleware_ServeHTTP_nilHooks(t *testing.T) {
 	assert.JSONEq(t,
 		fmt.Sprintf(`{"level":"info","method":"GET","msg":"completed handling request",`+
 			`"remote":"10.10.10.10","request":"http://example.com/stuff?rly=ya",`+
-			`"measure#web.latency":10000,"took":10000,"text_status":"I'm a teapot",`+
+			`"measure#web-latency":10000,"took":10000,"text_status":"I'm a teapot",`+
 			`"status":418,"request_id":"22035D08-98EF-413C-BBA0-C4E66A11B28D","time":"%s"}`, nowToday),
 		lines[1])
 }
@@ -164,7 +164,7 @@ func TestMiddleware_ServeHTTP_BeforeOverride(t *testing.T) {
 	assert.Len(t, lines, 2)
 	assert.JSONEq(t,
 		fmt.Sprintf(`{"wat":200,"level":"info","msg":"completed handling request",`+
-			`"measure#web.latency":10000,"took":10000,"text_status":"I'm a teapot",`+
+			`"measure#web-latency":10000,"took":10000,"text_status":"I'm a teapot",`+
 			`"status":418,"request_id":"22035D08-98EF-413C-BBA0-C4E66A11B28D","time":"%s"}`, nowToday),
 		lines[1])
 }
@@ -197,7 +197,7 @@ func TestMiddleware_ServeHTTP_logStartingFalse(t *testing.T) {
 	assert.JSONEq(t,
 		fmt.Sprintf(`{"level":"info","method":"GET","msg":"completed handling request",`+
 			`"remote":"10.10.10.10","request":"http://example.com/stuff?rly=ya",`+
-			`"measure#web.latency":10000,"took":10000,"text_status":"I'm a teapot",`+
+			`"measure#web-latency":10000,"took":10000,"text_status":"I'm a teapot",`+
 			`"status":418,"request_id":"22035D08-98EF-413C-BBA0-C4E66A11B28D","time":"%s"}`, nowToday),
 		lines[0])
 }
